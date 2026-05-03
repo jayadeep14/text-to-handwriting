@@ -8,3 +8,13 @@
 ## 🌠 Output
 <br/> <img width="800" height="1128" alt="image" src="https://github.com/user-attachments/assets/3085ccf9-008d-4d28-9ce1-92c5d1c0012e" />
 <br/>Sample image of output using Handwriting font 
+
+---
+## 📚 Libraries used
+
+- [html2canvas](https://github.com/niklasvh/html2canvas) - Turns DOM into Canvas.
+- [jsPDF](https://github.com/MrRio/jsPDF) - To generate PDF from images.
+- [cypress](https://github.com/cypress-io/cypress) - Testing Library
+- [serve](https://github.com/zeit/serve) - Start local server
+
+---
