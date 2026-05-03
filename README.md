@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img width="600" height="337" alt="image" src="https://github.com/user-attachments/assets/ed849187-c3ee-46e5-9032-60e87fd3c21e" />
+ <img width="1376" height="712" alt="1000076883" src="https://github.com/user-attachments/assets/17a3bc48-4f3b-45b6-a9f1-473dbd960a4a" />
 
 <a href="[https://github.io](https://jayadeep14.github.io/text-to-handwriting/)">
   <img alt="Website" src="https://shields.io">
@@ -21,3 +21,4 @@
 - [serve](https://github.com/zeit/serve) - Start local server
 
 ---
+<img width="449" height="557" alt="1000076887" src="https://github.com/user-attachments/assets/4eaa8d34-dcff-4295-8d59-7414852fa7a7" />
