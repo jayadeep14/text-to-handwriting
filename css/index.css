@@ -50,7 +50,7 @@ body.dark {
 }
 body {
   /* Change this line */
-  --font-family-primary: 'Hindi_Font', 'Roboto', Arial; 
+  --handwriting-font: 'Hindi_Font', 'Roboto', Arial; 
   
   /* Keep the rest as is */
   --background-primary: #fff;
