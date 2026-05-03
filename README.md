@@ -1,1 +1,1 @@
-<br/><b><a href="https://jayadeep14.github.io/text-to-handwriting/">https://jayadeep14.github.io/text-to-handwriting/</a></b><br/><br/><img alt="NPM Version"/><br/><br/> I hate writing assignments so I made this tool that converts text to an image that looks like handwriting😛
+<br/><b><a href="https://jayadeep14.github.io/text-to-handwriting/">https://jayadeep14.github.io/text-to-handwriting/</a><br/><br/> I hate writing assignments so I made this tool that converts text to an image that looks like handwriting😛
