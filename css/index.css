@@ -49,6 +49,15 @@ body.dark {
   box-sizing: border-box;
 }
 body {
+  /* Change this line */
+  --font-family-primary: 'Hindi_Font', 'Roboto', Arial; 
+  
+  /* Keep the rest as is */
+  --background-primary: #fff;
+  /* ... */
+}
+
+body {
   background-color: var(--background-primary);
   color: var(--font-color-primary);
   padding: 100px 100px;
