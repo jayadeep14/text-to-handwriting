@@ -24,6 +24,8 @@ I hate writing assignments by hand, so I built this tool! It converts your digit
 ## 🌠 Preview Output
 <p align="center">
   <img src="https://github.com/user-attachments/assets/3085ccf9-008d-4d28-9ce1-92c5d1c0012e" alt="Handwriting Output" width="600">
+  <img width="800" height="1128" alt="sample" src="https://github.com/user-attachments/assets/4a8501d8-7295-4609-944b-4cdf402868ff" />
+
   <br><i>Sample output using custom handwriting fonts</i>
 </p>
 
