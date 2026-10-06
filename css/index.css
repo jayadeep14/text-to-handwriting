@@ -237,6 +237,8 @@ body.dark .github-corner {
   display: flex;
   flex: 1; /* Allows this middle section to grow */
   align-items: stretch; /* Ensures margins stretch to full height */
+  position: relative;
+  z-index: 1;
 }
 
 .page-a {
@@ -248,11 +250,13 @@ body.dark .github-corner {
 /* ================= REAL MARGINS ================= */
 
 .top-margin {
-  height: 30px;
+  margin-top: 20px;
   border-bottom: 1px solid var(--bor-color);
   margin-right: 20px;
   margin-left: 20px;
   flex-shrink: 0;
+  
+  z-index: 1;
   
 }
 
@@ -273,35 +277,83 @@ body.dark .github-corner {
   margin-right: 20px;
   margin-left: 20px;
   flex-shrink: 0;
+  position: relative;
+  z-index: 1;
 }
 
-.page-a:not(.margined) .top-margin,
-.page-a:not(.margined) .Right-margin,
-.page-a:not(.margined) .bottom-margin {
-  display: none;
+/* ================= MARGIN LAYOUT OPTIONS ================= */
+.page-a.layout-hide {
+  border: none;
+}
+.page-a .top-margin,
+.page-a .left-margin,
+.page-a .Right-margin,
+.page-a .bottom-margin {
+  visibility: hidden;
+}
+.page-a.layout-hide .top-margin,
+.page-a.layout-hide .left-margin,
+.page-a.layout-hide .Right-margin,
+.page-a.layout-hide .bottom-margin {
+  margin-right: 0px;
+  margin-left: 0px;
+  margin-top: 5px;
+
+  
+  
 }
 
-.page-a.no-paper-margin {
-  border: none !important;
+.page-a.layout-one-side .left-margin {
+  visibility: visible;
+  margin-right: 0px;
+  margin-left: 0px;
+  margin-top: 5px;
+  border-right: 1px solid var(--bor-color);
 }
 
-.page-a.no-paper-margin .left-margin {
-  display: block;
-  border-right-color: var(--bor-color);
+.page-a.layout-two-side .left-margin {
+  border-right: 1px solid var(--bor-color);
+  margin-top: 0px;
+  
 }
-/* Add this to the bottom of your CSS file */
-.page-a.hide-borders .top-margin,
-.page-a.hide-borders .left-margin,
-.page-a.hide-borders .Right-margin,
-.page-a.hide-borders .bottom-margin {
-  border: none !important;
+.page-a.layout-two-side .top-margin,
+.page-a.layout-two-side .left-margin {
+  visibility: visible;
+  margin-right: 0px;
+  margin-left: 0px;
+  
+    top: 0;
+  bottom: 0;
+  left: 0;
+}
+.page-a.layout-two-side .top-margin {
+  border-bottom: 1px solid var(--bor-color);
+
+}
+
+
+.page-a.layout-all-side .top-margin,
+.page-a.layout-all-side .left-margin,
+.page-a.layout-all-side .Right-margin,
+.page-a.layout-all-side .bottom-margin {
+  visibility: visible;
+}
+.page-a.layout-all-side .top-margin {
+  border-bottom: 1px solid var(--bor-color);
+}
+.page-a.layout-all-side .left-margin,
+.page-a.layout-all-side .Right-margin {
+  border-right: 1px solid var(--bor-color);
+}
+.page-a.layout-all-side .bottom-margin {
+  border-top: 1px solid var(--bor-color);
 }
 
 /* ================= CONTENT ================= */
 
 .paper-content {
   flex: 1;
-  padding: 10px;
+  padding: 0px;
   margin: 0;
 
   line-height: 1.7;
@@ -313,18 +365,11 @@ body.dark .github-corner {
   /* ✍️ handwriting feel */
   transform: rotate(var(--text-rotation, -0.2deg));
   transform-origin: top left;
+  
+  z-index: 1;
 }
 
 /* ================= REMOVE OLD SYSTEM ================= */
-
-.margined .paper-content {
-  padding: 0;
-}
-
-.margined .left-margin {
-  position: static;
-  height: auto;
-}
 
 /* ================= OVERLAY ================= */
 
@@ -333,6 +378,7 @@ body.dark .github-corner {
   inset: 0;
   pointer-events: none;
   display: none;
+  z-index: 0;
 }
 
 .overlay.shadows {
