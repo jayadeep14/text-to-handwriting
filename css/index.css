@@ -49,15 +49,6 @@ body.dark {
   box-sizing: border-box;
 }
 body {
-  /* Change this line */
-  --handwriting-font: 'Hindi_Font', 'Roboto', Arial; 
-  
-  /* Keep the rest as is */
-  --background-primary: #fff;
-  /* ... */
-}
-
-body {
   background-color: var(--background-primary);
   color: var(--font-color-primary);
   padding: 100px 100px;
@@ -284,6 +275,28 @@ body.dark .github-corner {
   flex-shrink: 0;
 }
 
+.page-a:not(.margined) .top-margin,
+.page-a:not(.margined) .Right-margin,
+.page-a:not(.margined) .bottom-margin {
+  display: none;
+}
+
+.page-a.no-paper-margin {
+  border: none !important;
+}
+
+.page-a.no-paper-margin .left-margin {
+  display: block;
+  border-right-color: var(--bor-color);
+}
+/* Add this to the bottom of your CSS file */
+.page-a.hide-borders .top-margin,
+.page-a.hide-borders .left-margin,
+.page-a.hide-borders .Right-margin,
+.page-a.hide-borders .bottom-margin {
+  border: none !important;
+}
+
 /* ================= CONTENT ================= */
 
 .paper-content {
@@ -298,7 +311,8 @@ body.dark .github-corner {
   word-break: break-word;
 
   /* ✍️ handwriting feel */
-  transform: rotate(-0.2deg);
+  transform: rotate(var(--text-rotation, -0.2deg));
+  transform-origin: top left;
 }
 
 /* ================= REMOVE OLD SYSTEM ================= */
