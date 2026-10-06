@@ -29,17 +29,17 @@
     />
     <meta
       name="keywords"
-      content="text to handwriting, text-to-handwrting,  text to handwriting, convert text to image, write assignment online"
+      content="text to handwriting, text-to-handwrting, saurabh text to handwriting, convert text to image, write assignment online"
     />
     <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="author" content="Jayadeep T P" />
-    <meta name="copyright" content="Jayadeep T P" />
+    <meta name="author" content="Saurabh Daware" />
+    <meta name="copyright" content="Saurabh Daware" />
     <meta name="robots" content="follow" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Text to Handwriting" />
     <meta
       property="og:url"
-      content="https://jayadeep14.github.io/text-to-handwriting"
+      content="https://saurabhdaware.github.io/text-to-handwriting"
     />
     <meta
       property="og:description"
@@ -50,17 +50,18 @@
     <meta
       property="og:image:secure_url"
       itemprop="image"
-      content="text-to-handwriting.jpg"
+      content="https://res.cloudinary.com/saurabhdaware/image/upload/v1585413874/saurabh2019/projects/text-to-handwriting.png"
     />
     <meta
       property="og:image"
       itemprop="image"
-      content="text-to-handwriting.jpg"
+      content="https://res.cloudinary.com/saurabhdaware/image/upload/v1585413874/saurabh2019/projects/text-to-handwriting.png"
     />
     <meta property="og:image:width" content="600" />
     <meta property="og:image:height" content="337" />
 
-    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@saurabhcodes" />
 
     <title>Text to Handwriting</title>
 
@@ -150,7 +151,8 @@
         contenteditable="true"
         spellcheck="false"
       >
-        I have been using this application for months, and it has consistently exceeded my high expectations". The user interface is intuitive and smooth, offering incredible functionality that boosts productivity every day. It offers a seamless experience with features that genuinely make daily tasks easier to manage. Highly recommended for anyone looking for the best in class, this is a five-star app without a doubt.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Ut rhoncus dui eget tortor feugiat iaculis...
       </div>
       <div class="Right-margin"></div>
 
@@ -198,7 +200,7 @@
                     >
                     <select id="handwriting-font">
                       <option
-                        
+                        selected
                         style="font-family: 'Homemade Apple';"
                         value="'Homemade Apple', cursive"
                       >
@@ -212,7 +214,7 @@
                         Caveat
                         
                       </option>
-                      <option selected value="Hand_Font">Hand_Font</option>
+                      <option value="Hand_Font">Hand_Font</option>
                       
                       <option
                         style="
@@ -263,6 +265,7 @@
                       <option value="black">Black</option>
                       <option value="#ba3807">Red</option>
                       <option value="#4B4E53">pencil</option>
+                       
                     </select>
                   </div>
                   <div>
@@ -273,6 +276,7 @@
                       <option value="black">Black</option>
                       
                       <option value="#4B4E53">Pencil</option>
+                      <option value="hide">Hide</option>
                     </select>
                   </div>
                   <div>
@@ -309,6 +313,14 @@
                   <div class="postfix-input" data-postfix="px">
                     <label for="top-padding">Vertical Position</label>
                     <input id="top-padding" min="0" value="5" type="number" />
+                  </div>
+                  <div class="postfix-input" data-postfix="px">
+                    <label for="left-padding">Horizontal Position</label>
+                    <input id="left-padding" min="0" value="10" type="number" />
+                  </div>
+                  <div class="postfix-input" data-postfix="deg">
+                    <label for="text-rotation">Text Rotation</label>
+                    <input id="text-rotation" min="-45" max="45" step="0.5" value="-0.2" type="number" />
                   </div>
                   <div class="postfix-input" data-postfix="px">
                     <label for="word-spacing">Word Spacing</label>
@@ -356,6 +368,9 @@
                       <div></div>
                     </label>
                   </div>
+                  
+                  
+                  
 
                   <div>
                     <label for="paper-line-toggle"
@@ -456,6 +471,9 @@
 
       
 
+      <button onclick="generateImage()">Convert Page to Image</button>
+      <div id="image-preview" class="output"></div>
+
 
     </main>
     
@@ -552,6 +570,23 @@
       function generateImage() {
   const page = document.querySelector('.page-a');
   const outputContainer = document.getElementById('image-preview');
+const borderSelect = document.getElementById('bor-color');
+// Target your paper page container element
+const pageElement = document.querySelector('.page-a'); 
+
+borderSelect.addEventListener('change', (event) => {
+  const selectedValue = event.target.value;
+
+  if (selectedValue === 'hide') {
+    // Add the class that removes borders entirely
+    pageElement.classList.add('hide-borders');
+  } else {
+    // Remove the hide class if another color is selected
+    pageElement.classList.remove('hide-borders');
+    // Dynamically update your CSS variable color
+    document.body.style.setProperty('--bor-color', selectedValue);
+  }
+});
 
   // Clear previous previews
   outputContainer.innerHTML = '';
