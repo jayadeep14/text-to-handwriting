@@ -133,7 +133,7 @@
               </div>
 
               <div class="flex-1 page-container">
-  <div class="page-a margined" id="page">
+  <div class="page-a layout-two-side" id="page">
 
     <!-- Top margin (like notebook space) -->
     <div class="top-margin"></div>
@@ -276,7 +276,6 @@
                       <option value="black">Black</option>
                       
                       <option value="#4B4E53">Pencil</option>
-                      <option value="hide">Hide</option>
                     </select>
                   </div>
                   <div>
@@ -316,19 +315,30 @@
                   </div>
                   <div class="postfix-input" data-postfix="px">
                     <label for="left-padding">Horizontal Position</label>
-                    <input id="left-padding" min="0" value="10" type="number" />
+                    <input id="left-padding" min="-10" value="10" type="number" />
                   </div>
                   <div class="postfix-input" data-postfix="deg">
                     <label for="text-rotation">Text Rotation</label>
-                    <input id="text-rotation" min="-45" max="45" step="0.1" value="0" type="number" />
+                    <input id="text-rotation" min="-45" max="45" step="0.5" value="-0.2" type="number" />
                   </div>
                   <div class="postfix-input" data-postfix="px">
                     <label for="word-spacing">Word Spacing</label>
                     <input
                       id="word-spacing"
-                      min="0"
+                      min="-20"
                       max="100"
                       value="0"
+                      type="number"
+                    />
+                  </div>
+                  <div class="postfix-input" data-postfix="×">
+                    <label for="line-spacing">Line Spacing</label>
+                    <input
+                      id="line-spacing"
+                      min="0.5"
+                      max="3"
+                      step="0.1"
+                      value="1.7"
                       type="number"
                     />
                   </div>
@@ -351,22 +361,13 @@
 
                 <div class="category-grid">
                   <div>
-                    <label for="paper-margin-toggle"
-                      >Paper Margin:
-                      <span aria-label="paper margin status" class="status"
-                        >on</span
-                      >
-                    </label>
-                    <label class="switch-toggle outer">
-                      <input
-                        aria-checked="true"
-                        checked
-                        aria-label="Paper Margin Button"
-                        id="paper-margin-toggle"
-                        type="checkbox"
-                      />
-                      <div></div>
-                    </label>
+                    <label class="block" for="margin-layout">Margin Layout</label>
+                    <select id="margin-layout">
+                      <option value="hide">Hide Margins</option>
+                      <option value="one-side">One Side (Left Only)</option>
+                      <option selected value="two-side">Two Side (Top &amp; Left)</option>
+                      <option value="all-side">All Side (Full Frame)</option>
+                    </select>
                   </div>
                   
                   
@@ -568,25 +569,8 @@
     <script defer src="https://unpkg.com/jspdf@^1/dist/jspdf.min.js"></script>
     <script>
       function generateImage() {
-  const page = document.querySelector('.page-a');
-  const outputContainer = document.getElementById('image-preview');
-const borderSelect = document.getElementById('bor-color');
-// Target your paper page container element
-const pageElement = document.querySelector('.page-a'); 
-
-borderSelect.addEventListener('change', (event) => {
-  const selectedValue = event.target.value;
-
-  if (selectedValue === 'hide') {
-    // Add the class that removes borders entirely
-    pageElement.classList.add('hide-borders');
-  } else {
-    // Remove the hide class if another color is selected
-    pageElement.classList.remove('hide-borders');
-    // Dynamically update your CSS variable color
-    document.body.style.setProperty('--bor-color', selectedValue);
-  }
-});
+const page = document.querySelector('.page-a');
+const outputContainer = document.getElementById('image-preview');
 
   // Clear previous previews
   outputContainer.innerHTML = '';
