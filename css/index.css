@@ -622,8 +622,28 @@ ul.info-ul > li {
    PAPER LINES
    ========================================================= */
 
+.page-a.lines {
+  background-color: #fff;
+}
+
+.page-a.lines::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 22px,
+    rgba(105, 120, 140, 0.65) 22px,
+    rgba(105, 120, 140, 0.65) 23px
+  );
+  background-size: 100% 23px;
+}
+
 .page-a.lines .paper-content {
-  background: none !important;
+  z-index: 2;
 }
 
 

@@ -75,9 +75,14 @@ export async function generateImages() {
   }
 
   const scrollHeight = paperContentEl.scrollHeight;
+  // The usable text area changes with the selected margin layout.
+  const clientHeight = paperContentEl.clientHeight;
 
-  // Height of .paper-content when there is no content
-  const clientHeight = 514;
+  if (clientHeight <= 0) {
+    console.error('The page content area has no height.');
+    removePaperStyles();
+    return;
+  }
 
   const totalPages = Math.ceil(scrollHeight / clientHeight);
 

@@ -105,22 +105,9 @@ const EVENT_MAP = {
     }
   },
   
-  '#paper-margin-toggle': {
-    on: 'change',
-    action: (e) => {
-      pageEl.classList.toggle('margined', e.target.checked);
-      pageEl.classList.toggle('no-paper-margin', !e.target.checked);
-    }
-  },
   '#paper-line-toggle': {
     on: 'change',
-    action: () => {
-      if (pageEl.classList.contains('lines')) {
-        pageEl.classList.remove('lines');
-      } else {
-        pageEl.classList.add('lines');
-      }
-    }
+    action: (e) => pageEl.classList.toggle('lines', e.target.checked)
   },
   '#draw-diagram-button': {
     on: 'click',
@@ -179,26 +166,26 @@ pageEl.querySelector('.paper-content').style.setProperty(
 pageEl.querySelector('.paper-content').style.transform =
   `rotate(${initialRotation}deg)`;
 
-pageEl.classList.toggle(
-  'no-paper-margin',
-  !document.querySelector('#paper-margin-toggle').checked
-);
+const paperLineToggle = document.querySelector('#paper-line-toggle');
+if (paperLineToggle) {
+  pageEl.classList.toggle('lines', paperLineToggle.checked);
+}
 
 /**
  * This makes toggles, accessible.
  */
 document.querySelectorAll('.switch-toggle input').forEach((toggleInput) => {
   toggleInput.addEventListener('change', (e) => {
+    const statusEl = document.querySelector(
+      `label[for="${toggleInput.id}"] .status`
+    );
+
     if (toggleInput.checked) {
-      document.querySelector(
-        `label[for="${toggleInput.id}"] .status`
-      ).textContent = 'on';
+      if (statusEl) statusEl.textContent = 'on';
       toggleInput.setAttribute('aria-checked', true);
     } else {
       toggleInput.setAttribute('aria-checked', false);
-      document.querySelector(
-        `label[for="${toggleInput.id}"] .status`
-      ).textContent = 'off';
+      if (statusEl) statusEl.textContent = 'off';
     }
   });
 });
@@ -207,12 +194,18 @@ document.querySelectorAll('.switch-toggle input').forEach((toggleInput) => {
  * Set GitHub Contributors
  */
 
-fetch(
-  'https://api.github.com/repos/jayadeep14'
-)
-  .then((res) => res.json())
+fetch('https://api.github.com/repos/jayadeep14/text-to-handwriting/contributors')
   .then((res) => {
-    document.querySelector('#project-contributors').innerHTML = res
+    if (!res.ok) {
+      throw new Error(`GitHub contributors request failed: ${res.status}`);
+    }
+    return res.json();
+  })
+  .then((res) => {
+    const contributorsEl = document.querySelector('#project-contributors');
+    if (!contributorsEl || !Array.isArray(res)) return;
+
+    contributorsEl.innerHTML = res
       .map(
         (contributor) => /* html */ `
         <div class="contributor-profile shadow">
@@ -229,4 +222,5 @@ fetch(
       `
       )
       .join('');
-  });
+  })
+  .catch((error) => console.error('Could not load GitHub contributors.', error));
